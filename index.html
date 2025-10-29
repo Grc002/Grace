@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Collection System</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f6f8; margin: 0; padding: 0;">
+
+  <header style="background-color: #007bff; color: white; text-align: center; padding: 20px;">
+    <h1>Feedback Collection System</h1>
+    <p>Naal Mudhalvan Project</p>
+  </header>
+
+  <main style="padding: 20px;">
+
+    <section style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.2); max-width: 600px; margin: auto;">
+      <h2 align="center">Submit Your Feedback</h2>
+      <form id="feedbackForm">
+        <label><b>Full Name:</b></label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your name" style="width:100%; padding:8px; margin:8px 0;"><br>
+
+        <label><b>Email:</b></label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" style="width:100%; padding:8px; margin:8px 0;"><br>
+
+        <label><b>Department:</b></label><br>
+        <input type="text" id="dept" name="dept" placeholder="e.g. AI & DS" style="width:100%; padding:8px; margin:8px 0;"><br>
+
+        <label><b>Rate Your Experience:</b></label><br>
+        <select id="rating" name="rating" style="width:100%; padding:8px; margin:8px 0;">
+          <option value="">-- Select Rating --</option>
+          <option value="Excellent">Excellent</option>
+          <option value="Good">Good</option>
+          <option value="Average">Average</option>
+          <option value="Poor">Poor</option>
+        </select><br>
+
+        <label><b>Comments / Suggestions:</b></label><br>
+        <textarea id="comments" name="comments" rows="4" placeholder="Write your feedback..." style="width:100%; padding:8px; margin:8px 0;"></textarea><br>
+
+        <center>
+          <button type="submit" style="background-color:#007bff; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">
+            Submit Feedback
+          </button>
+        </center>
+      </form>
+    </section>
+
+    <section style="max-width:600px; margin:30px auto; background:white; padding:20px; border-radius:10px; box-shadow:0 0 5px rgba(0,0,0,0.2);">
+      <h2 align="center">Submitted Feedback</h2>
+      <div id="output" style="margin-top:20px; text-align:left;">
+        <p>No feedback submitted yet.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="text-align:center; background-color:#007bff; color:white; padding:15px; margin-top:20px;">
+    <p>© 2025 Feedback Collection System | Project by Team Naal Mudhalvan</p>
+  </footer>
+
+  <script>
+    // Simple client-side storage (demo purpose only)
+    const form = document.getElementById('feedbackForm');
+    const output = document.getElementById('output');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const dept = document.getElementById('dept').value;
+      const rating = document.getElementById('rating').value;
+      const comments = document.getElementById('comments').value;
+
+      if (name === '' || email === '' || dept === '' || rating === '' || comments === '') {
+        alert('Please fill all fields!');
+        return;
+      }
+
+      const feedbackHTML = `
+        <div style="background:#f1f1f1; padding:10px; border-radius:8px; margin-bottom:10px;">
+          <p><b>Name:</b> ${name}</p>
+          <p><b>Email:</b> ${email}</p>
+          <p><b>Department:</b> ${dept}</p>
+          <p><b>Rating:</b> ${rating}</p>
+          <p><b>Comments:</b> ${comments}</p>
+        </div>
+      `;
+      output.innerHTML = feedbackHTML + output.innerHTML;
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
